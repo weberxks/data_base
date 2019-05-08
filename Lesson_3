@@ -1,0 +1,47 @@
+Задание №3
+
+	3.1 update users set created_at = NOW(), updated_at= NOW();
+
+
+
+	3.2 UPDATE
+	      users
+	    SET
+		created_at = STR_TO_DATE (created_at, '%d.%m.%Y %k:%i'),
+		updated_at = STR_TO_DATE (updated_at, '%d.%m.%Y %k:%i');
+	    ALTER TABLE
+		users
+	    CHANGE updated_at updated_at DATETIME DEFAULT CURRENT_TIMESTAMPON UPDATE CURRENT_TIMESTAMP;
+	    CHANGE created_at created_at DATETIME DEFAULT CURRENT_TIMESTAMPON UPDATE CURRENT_TIMESTAMP;
+
+
+
+	3.3 select*from storehouse_products  order by itogo;
+	    select id, storehouse_id, itogo, IF(itogo > 0,0,1) as sort from storehouse_products order by itogo;
++----+---------------+-------+------+
+| id | storehouse_id | itogo | sort |
++----+---------------+-------+------+
+|  1 |           100 | 0     |    1 |
+|  3 |           300 | 0     |    1 |
+|  6 |           600 | 1     |    0 |
+|  2 |           200 | 2500  |    0 |
+|  4 |           400 | 30    |    0 |
+|  5 |           500 | 500   |    0 |
++----+---------------+-------+------+
+6 rows in set (0.00 sec)
+
+	    select*from storehouse_products order by IF(itogo>0,0,1),itogo;
++----+---------------+---------------------+---------------------+-------+
+| id | storehouse_id | created_at          | update_at           | itogo |
++----+---------------+---------------------+---------------------+-------+
+|  6 |           600 | 2012-12-12 00:00:00 | 2019-05-06 16:27:17 | 1     |
+|  2 |           200 | 2012-12-12 00:00:00 | 2019-05-06 16:27:17 | 2500  |
+|  4 |           400 | 2012-12-12 00:00:00 | 2019-05-06 16:27:17 | 30    |
+|  5 |           500 | 2012-12-12 00:00:00 | 2019-05-06 16:27:17 | 500   |
+|  1 |           100 | 2012-12-12 00:00:00 | 2019-05-06 16:27:17 | 0     |
+|  3 |           300 | 2012-12-12 00:00:00 | 2019-05-06 16:27:17 | 0     |
++----+---------------+---------------------+---------------------+-------+
+
+	    
+
+
