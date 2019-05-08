@@ -1,0 +1,72 @@
+Задание №4
+
+	4.1 select id, name, timestampdiff(year, birthday_at, NOW()) as vozrast from users;
++----+--------------------+---------+
+| id | name               | vozrast |
++----+--------------------+---------+
+|  1 | Геннадий           |      28 |
+|  2 | Наталья            |      34 |
+|  3 | Александр          |      33 |
+|  4 | Сергей             |      31 |
+|  5 | Иван               |      21 |
+|  6 | Мария              |      12 |
++----+--------------------+---------+
+6 rows in set (0.00 sec)
+
+	select round(avg(timestampdiff(year, birthday_at, NOW()))) as sredn_vozrast from users;
++---------------+
+| sredn_vozrast |
++---------------+
+|            27 |
++---------------+
+
+	4.2   select id, name, DAYNAME(birthday_at) as day from users;
++----+--------------------+---------+
+| id | name               | day     |
++----+--------------------+---------+
+|  1 | Геннадий           | Friday  |
+|  2 | Наталья            | Monday  |
+|  3 | Александр          | Monday  |
+|  4 | Сергей             | Sunday  |
+|  5 | Иван               | Monday  |
+|  6 | Мария              | Tuesday |
++----+--------------------+---------+
+
+	4.3 select DAYNAME(birthday_at) as day from users;
++---------+
+| day     |
++---------+
+| Friday  |
+| Monday  |
+| Monday  |
+| Sunday  |
+| Monday  |
+| Tuesday |
++---------+
+
+	   select DAYNAME(birthday_at) as day from users group by day;
++---------+
+| day     |
++---------+
+| Friday  |
+| Monday  |
+| Sunday  |
+| Tuesday |
++---------+
+	  select count(*), DAYNAME(birthday_at) as day from users group by day;
++----------+---------+
+| count(*) | day     |
++----------+---------+
+|        1 | Friday  |
+|        3 | Monday  |
+|        1 | Sunday  |
+|        1 | Tuesday |
++----------+---------+
+
+ 	   
+
+
+
+
+
+
