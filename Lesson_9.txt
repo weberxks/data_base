@@ -1,0 +1,30 @@
+﻿Задание 9. CREATE TABLE Logs (
+ 		 id SERIAL PRIMARY KEY,
+  		name VARCHAR(255),
+  		name_table VARCHAR(255),
+  		created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+  		)engine=archive DEFAULT CHARSET=utf8;
+   
+ 	   CREATE TRIGGER Log_users AFTER INSERT ON users
+	   FOR EACH ROW
+	   BEGIN
+		IF UPDATE users ()
+		SET UPDATE Logs VALUES(id, name as(INSERT into Log_users(name) SELECT name from users), users,now())
+	   END IF;
+	   END
+	   
+ 	   CREATE TRIGGER Log_catalogs AFTER INSERT ON catalogs
+	   FOR EACH ROW
+	   BEGIN
+		IF UPDATE catalogs ()
+		SET UPDATE Logs VALUES(id, name as(INSERT into Log_users(name) SELECT name from catalogs), catalogs,now())
+	   END IF;
+	   END	   
+	  
+  	   CREATE TRIGGER Log_products AFTER INSERT ON products
+	   FOR EACH ROW
+	   BEGIN
+		IF UPDATE products ()
+		SET UPDATE Logs VALUES(id, name as(INSERT into Log_users(name) SELECT name from products), products,now())
+	   END IF;
+	   END	
