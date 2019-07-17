@@ -1,0 +1,19 @@
+﻿Задание 5
+
+	1. select 
+		id, name 
+	      from 
+		users 
+	      where 
+		id in (select user_id from orders);
+
+	2. select 
+		products.name, 
+		catalogs.name 
+	      from 
+		catalogs, 
+		products 
+	      where 
+                catalogs.id=products.catalog_id;
+
+
