@@ -1,0 +1,26 @@
+﻿Задание 8
+
+	1.CREATE FUNCTION hello()
+	  RETURNS TINYTEXT
+	  BEGIN
+		DECLARE hour int;
+		set hour = hour(now());
+	  CASE
+		when hour between 0 and 5 THEN
+		return "Доброй ночи";
+		when hour between 6 and 11 THEN
+		return "Доброе утро";
+		when hour between 12 and 17 THEN
+		return "Добрый день";
+		when hour between 18 and 23 THEN
+		return "Добрый вечер";
+		end case;
+	  END
+	2. CREATE TRIGGER chek_name BEFORE INSERT ON products
+	   FOR EACH ROW
+	   BEGIN
+		IF NEW.name IS NULL AND NEW.description IS NULL THEN
+		SELECT 'Ошибка при записи';
+	   END IF;
+	   END
+
